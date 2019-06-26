@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 
 	"github.com/gobs/simplejson"
 	"github.com/raff/mson"
@@ -22,7 +23,7 @@ func fatalf(m string, params ...interface{}) {
 	os.Exit(1)
 }
 
-func process(r io.Reader, fileName string, prologue bool) {
+func process(r io.Reader, fileName, indent string, prologue bool) {
 	reader := bufio.NewReader(r)
 
 	// skip the "prologue" that mongdb shell adds when redirecting the output
@@ -57,17 +58,20 @@ func process(r io.Reader, fileName string, prologue bool) {
 	if !ok {
 		fatal("ERROR PARSING", fileName)
 	} else {
-		fmt.Println(simplejson.MustDumpString(v, simplejson.Indent(" ")))
+		fmt.Println(simplejson.MustDumpString(v, simplejson.Indent(indent)))
 	}
 }
 
 func main() {
 	prologue := flag.Bool("prologue", false, "skip `prologue` added by MongoDB shell")
+	nindent := flag.Int("indent", 1, "JSON indent for nested values")
 
 	flag.Parse()
 
+	indent := strings.Repeat(" ", *nindent)
+
 	if flag.NArg() == 0 {
-		process(os.Stdin, "<stdin>", *prologue)
+		process(os.Stdin, "<stdin>", indent, *prologue)
 		return
 	}
 
@@ -77,7 +81,7 @@ func main() {
 			fatal(err)
 		}
 
-		process(f, fileName, *prologue)
+		process(f, fileName, indent, *prologue)
 		f.Close()
 	}
 }
