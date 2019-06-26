@@ -1,17 +1,11 @@
 //go:generate antlr -Dlanguage=Go -package parser -o parser Mson.g4
-package main
+package mson
 
 import (
-	"bufio"
-	"bytes"
-	"fmt"
-	"io"
-	"os"
 	"strconv"
 	"strings"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
-	"github.com/gobs/simplejson"
 	"github.com/raff/mson/parser"
 )
 
@@ -159,51 +153,4 @@ func parseValue(c parser.IValueContext) interface{} {
 
 	panic("unexpected value for " + vc.GetText())
 	return nil
-}
-
-func main() {
-	fileName := os.Args[1]
-	buf := bytes.NewBuffer(nil)
-
-	f, err := os.Open(fileName)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	reader := bufio.NewReader(f)
-
-	// skip the "prologue" that mongdb shell adds when redirecting the output
-	// (basically every up to the first '{')
-	for {
-		next, err := reader.Peek(1)
-		if err != nil {
-			panic(err)
-		}
-
-		if next[0] == '{' {
-			break
-		}
-
-		_, _, err = reader.ReadLine()
-		if err != nil {
-			break
-		}
-	}
-
-	_, err = io.Copy(buf, reader)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	f.Close()
-
-	s := string(buf.Bytes())
-	v, ok := NewProcessor().Parse(s)
-
-	if !ok {
-		fmt.Println("ERROR PARSING", fileName)
-	} else {
-		fmt.Println(simplejson.MustDumpString(v, simplejson.Indent(" ")))
-	}
 }
