@@ -2,8 +2,10 @@
 package mson
 
 import (
+	"encoding/base64"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/raff/mson/parser"
@@ -127,16 +129,23 @@ func parseValue(c parser.IValueContext) interface{} {
 	case vc.NUMBER() != nil:
 		return parseNumber(vc.NUMBER().GetText())
 	case vc.BinData() != nil:
-		return obj{
-			"bindata": obj{
-				"type": parseUnsigned(vc.BinData().GetTyp().GetText()),
-				"data": unquote(vc.BinData().GetData().GetText()),
-			},
+		typ := parseUnsigned(vc.BinData().GetTyp().GetText())
+		sdata := unquote(vc.BinData().GetData().GetText())
+		data, err := base64.StdEncoding.DecodeString(sdata)
+		if err != nil {
+			panic("invalid binary data" + sdata)
 		}
+		return obj{"$binary": obj{
+			"type": typ,
+			"data": data,
+		}}
 	case vc.IsoDate() != nil:
-		return obj{
-			"date": unquote(vc.IsoDate().GetDate().GetText()),
+		s := unquote(vc.IsoDate().GetDate().GetText())
+		t, err := time.Parse(time.RFC3339Nano, s)
+		if err != nil {
+			panic("invalid time " + s)
 		}
+		return obj{"$time": t}
 	case vc.NumberLong() != nil:
 		if vc.NumberLong().GetNum() != nil {
 			return parseInteger(vc.NumberLong().GetNum().GetText())
