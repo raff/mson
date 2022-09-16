@@ -1,96 +1,117 @@
-// Code generated from Mson.g4 by ANTLR 4.7.2. DO NOT EDIT.
+// Code generated from java-escape by ANTLR 4.11.1. DO NOT EDIT.
 
 package parser // Mson
 import (
 	"fmt"
-	"reflect"
 	"strconv"
+	"sync"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 )
 
 // Suppress unused import errors
 var _ = fmt.Printf
-var _ = reflect.Copy
 var _ = strconv.Itoa
-
-var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 19, 93, 4,
-	2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7, 4,
-	8, 9, 8, 4, 9, 9, 9, 3, 2, 7, 2, 20, 10, 2, 12, 2, 14, 2, 23, 11, 2, 3,
-	3, 3, 3, 3, 3, 3, 3, 7, 3, 29, 10, 3, 12, 3, 14, 3, 32, 11, 3, 3, 3, 3,
-	3, 3, 3, 3, 3, 5, 3, 38, 10, 3, 3, 4, 3, 4, 3, 4, 3, 4, 3, 5, 3, 5, 3,
-	5, 3, 5, 7, 5, 48, 10, 5, 12, 5, 14, 5, 51, 11, 5, 3, 5, 3, 5, 3, 5, 3,
-	5, 5, 5, 57, 10, 5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3,
-	6, 3, 6, 5, 6, 69, 10, 6, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3,
-	8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 5, 8, 86, 10, 8, 3, 9, 3,
-	9, 3, 9, 3, 9, 3, 9, 3, 9, 2, 2, 10, 2, 4, 6, 8, 10, 12, 14, 16, 2, 2,
-	2, 99, 2, 21, 3, 2, 2, 2, 4, 37, 3, 2, 2, 2, 6, 39, 3, 2, 2, 2, 8, 56,
-	3, 2, 2, 2, 10, 68, 3, 2, 2, 2, 12, 70, 3, 2, 2, 2, 14, 85, 3, 2, 2, 2,
-	16, 87, 3, 2, 2, 2, 18, 20, 5, 10, 6, 2, 19, 18, 3, 2, 2, 2, 20, 23, 3,
-	2, 2, 2, 21, 19, 3, 2, 2, 2, 21, 22, 3, 2, 2, 2, 22, 3, 3, 2, 2, 2, 23,
-	21, 3, 2, 2, 2, 24, 25, 7, 3, 2, 2, 25, 30, 5, 6, 4, 2, 26, 27, 7, 4, 2,
-	2, 27, 29, 5, 6, 4, 2, 28, 26, 3, 2, 2, 2, 29, 32, 3, 2, 2, 2, 30, 28,
-	3, 2, 2, 2, 30, 31, 3, 2, 2, 2, 31, 33, 3, 2, 2, 2, 32, 30, 3, 2, 2, 2,
-	33, 34, 7, 5, 2, 2, 34, 38, 3, 2, 2, 2, 35, 36, 7, 3, 2, 2, 36, 38, 7,
-	5, 2, 2, 37, 24, 3, 2, 2, 2, 37, 35, 3, 2, 2, 2, 38, 5, 3, 2, 2, 2, 39,
-	40, 7, 17, 2, 2, 40, 41, 7, 6, 2, 2, 41, 42, 5, 10, 6, 2, 42, 7, 3, 2,
-	2, 2, 43, 44, 7, 7, 2, 2, 44, 49, 5, 10, 6, 2, 45, 46, 7, 4, 2, 2, 46,
-	48, 5, 10, 6, 2, 47, 45, 3, 2, 2, 2, 48, 51, 3, 2, 2, 2, 49, 47, 3, 2,
-	2, 2, 49, 50, 3, 2, 2, 2, 50, 52, 3, 2, 2, 2, 51, 49, 3, 2, 2, 2, 52, 53,
-	7, 8, 2, 2, 53, 57, 3, 2, 2, 2, 54, 55, 7, 7, 2, 2, 55, 57, 7, 8, 2, 2,
-	56, 43, 3, 2, 2, 2, 56, 54, 3, 2, 2, 2, 57, 9, 3, 2, 2, 2, 58, 69, 7, 17,
-	2, 2, 59, 69, 7, 18, 2, 2, 60, 69, 5, 12, 7, 2, 61, 69, 5, 14, 8, 2, 62,
-	69, 5, 16, 9, 2, 63, 69, 5, 4, 3, 2, 64, 69, 5, 8, 5, 2, 65, 69, 7, 9,
-	2, 2, 66, 69, 7, 10, 2, 2, 67, 69, 7, 11, 2, 2, 68, 58, 3, 2, 2, 2, 68,
-	59, 3, 2, 2, 2, 68, 60, 3, 2, 2, 2, 68, 61, 3, 2, 2, 2, 68, 62, 3, 2, 2,
-	2, 68, 63, 3, 2, 2, 2, 68, 64, 3, 2, 2, 2, 68, 65, 3, 2, 2, 2, 68, 66,
-	3, 2, 2, 2, 68, 67, 3, 2, 2, 2, 69, 11, 3, 2, 2, 2, 70, 71, 7, 12, 2, 2,
-	71, 72, 7, 13, 2, 2, 72, 73, 7, 18, 2, 2, 73, 74, 7, 4, 2, 2, 74, 75, 7,
-	17, 2, 2, 75, 76, 7, 14, 2, 2, 76, 13, 3, 2, 2, 2, 77, 78, 7, 15, 2, 2,
-	78, 79, 7, 13, 2, 2, 79, 80, 7, 18, 2, 2, 80, 86, 7, 14, 2, 2, 81, 82,
-	7, 15, 2, 2, 82, 83, 7, 13, 2, 2, 83, 84, 7, 17, 2, 2, 84, 86, 7, 14, 2,
-	2, 85, 77, 3, 2, 2, 2, 85, 81, 3, 2, 2, 2, 86, 15, 3, 2, 2, 2, 87, 88,
-	7, 16, 2, 2, 88, 89, 7, 13, 2, 2, 89, 90, 7, 17, 2, 2, 90, 91, 7, 14, 2,
-	2, 91, 17, 3, 2, 2, 2, 9, 21, 30, 37, 49, 56, 68, 85,
-}
-var deserializer = antlr.NewATNDeserializer(nil)
-var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
-
-var literalNames = []string{
-	"", "'{'", "','", "'}'", "':'", "'['", "']'", "'true'", "'false'", "'null'",
-	"'BinData'", "'('", "')'", "'NumberLong'", "'ISODate'",
-}
-var symbolicNames = []string{
-	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "STRING", "NUMBER",
-	"WS",
-}
-
-var ruleNames = []string{
-	"mson", "obj", "pair", "array", "value", "binData", "numberLong", "isoDate",
-}
-var decisionToDFA = make([]*antlr.DFA, len(deserializedATN.DecisionToState))
-
-func init() {
-	for index, ds := range deserializedATN.DecisionToState {
-		decisionToDFA[index] = antlr.NewDFA(ds, index)
-	}
-}
+var _ = sync.Once{}
 
 type MsonParser struct {
 	*antlr.BaseParser
 }
 
+var msonParserStaticData struct {
+	once                   sync.Once
+	serializedATN          []int32
+	literalNames           []string
+	symbolicNames          []string
+	ruleNames              []string
+	predictionContextCache *antlr.PredictionContextCache
+	atn                    *antlr.ATN
+	decisionToDFA          []*antlr.DFA
+}
+
+func msonParserInit() {
+	staticData := &msonParserStaticData
+	staticData.literalNames = []string{
+		"", "'{'", "','", "'}'", "':'", "'['", "']'", "'true'", "'false'", "'null'",
+		"'BinData'", "'('", "')'", "'NumberLong'", "'ISODate'",
+	}
+	staticData.symbolicNames = []string{
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "STRING",
+		"NUMBER", "WS",
+	}
+	staticData.ruleNames = []string{
+		"mson", "obj", "pair", "array", "value", "binData", "numberLong", "isoDate",
+	}
+	staticData.predictionContextCache = antlr.NewPredictionContextCache()
+	staticData.serializedATN = []int32{
+		4, 1, 17, 91, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 1, 0, 5, 0, 18, 8, 0, 10, 0, 12,
+		0, 21, 9, 0, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 27, 8, 1, 10, 1, 12, 1, 30,
+		9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 36, 8, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1,
+		3, 1, 3, 1, 3, 1, 3, 5, 3, 46, 8, 3, 10, 3, 12, 3, 49, 9, 3, 1, 3, 1, 3,
+		1, 3, 1, 3, 3, 3, 55, 8, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1,
+		4, 1, 4, 1, 4, 3, 4, 67, 8, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5,
+		1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 84, 8, 6, 1, 7, 1,
+		7, 1, 7, 1, 7, 1, 7, 1, 7, 0, 0, 8, 0, 2, 4, 6, 8, 10, 12, 14, 0, 0, 97,
+		0, 19, 1, 0, 0, 0, 2, 35, 1, 0, 0, 0, 4, 37, 1, 0, 0, 0, 6, 54, 1, 0, 0,
+		0, 8, 66, 1, 0, 0, 0, 10, 68, 1, 0, 0, 0, 12, 83, 1, 0, 0, 0, 14, 85, 1,
+		0, 0, 0, 16, 18, 3, 8, 4, 0, 17, 16, 1, 0, 0, 0, 18, 21, 1, 0, 0, 0, 19,
+		17, 1, 0, 0, 0, 19, 20, 1, 0, 0, 0, 20, 1, 1, 0, 0, 0, 21, 19, 1, 0, 0,
+		0, 22, 23, 5, 1, 0, 0, 23, 28, 3, 4, 2, 0, 24, 25, 5, 2, 0, 0, 25, 27,
+		3, 4, 2, 0, 26, 24, 1, 0, 0, 0, 27, 30, 1, 0, 0, 0, 28, 26, 1, 0, 0, 0,
+		28, 29, 1, 0, 0, 0, 29, 31, 1, 0, 0, 0, 30, 28, 1, 0, 0, 0, 31, 32, 5,
+		3, 0, 0, 32, 36, 1, 0, 0, 0, 33, 34, 5, 1, 0, 0, 34, 36, 5, 3, 0, 0, 35,
+		22, 1, 0, 0, 0, 35, 33, 1, 0, 0, 0, 36, 3, 1, 0, 0, 0, 37, 38, 5, 15, 0,
+		0, 38, 39, 5, 4, 0, 0, 39, 40, 3, 8, 4, 0, 40, 5, 1, 0, 0, 0, 41, 42, 5,
+		5, 0, 0, 42, 47, 3, 8, 4, 0, 43, 44, 5, 2, 0, 0, 44, 46, 3, 8, 4, 0, 45,
+		43, 1, 0, 0, 0, 46, 49, 1, 0, 0, 0, 47, 45, 1, 0, 0, 0, 47, 48, 1, 0, 0,
+		0, 48, 50, 1, 0, 0, 0, 49, 47, 1, 0, 0, 0, 50, 51, 5, 6, 0, 0, 51, 55,
+		1, 0, 0, 0, 52, 53, 5, 5, 0, 0, 53, 55, 5, 6, 0, 0, 54, 41, 1, 0, 0, 0,
+		54, 52, 1, 0, 0, 0, 55, 7, 1, 0, 0, 0, 56, 67, 5, 15, 0, 0, 57, 67, 5,
+		16, 0, 0, 58, 67, 3, 10, 5, 0, 59, 67, 3, 12, 6, 0, 60, 67, 3, 14, 7, 0,
+		61, 67, 3, 2, 1, 0, 62, 67, 3, 6, 3, 0, 63, 67, 5, 7, 0, 0, 64, 67, 5,
+		8, 0, 0, 65, 67, 5, 9, 0, 0, 66, 56, 1, 0, 0, 0, 66, 57, 1, 0, 0, 0, 66,
+		58, 1, 0, 0, 0, 66, 59, 1, 0, 0, 0, 66, 60, 1, 0, 0, 0, 66, 61, 1, 0, 0,
+		0, 66, 62, 1, 0, 0, 0, 66, 63, 1, 0, 0, 0, 66, 64, 1, 0, 0, 0, 66, 65,
+		1, 0, 0, 0, 67, 9, 1, 0, 0, 0, 68, 69, 5, 10, 0, 0, 69, 70, 5, 11, 0, 0,
+		70, 71, 5, 16, 0, 0, 71, 72, 5, 2, 0, 0, 72, 73, 5, 15, 0, 0, 73, 74, 5,
+		12, 0, 0, 74, 11, 1, 0, 0, 0, 75, 76, 5, 13, 0, 0, 76, 77, 5, 11, 0, 0,
+		77, 78, 5, 16, 0, 0, 78, 84, 5, 12, 0, 0, 79, 80, 5, 13, 0, 0, 80, 81,
+		5, 11, 0, 0, 81, 82, 5, 15, 0, 0, 82, 84, 5, 12, 0, 0, 83, 75, 1, 0, 0,
+		0, 83, 79, 1, 0, 0, 0, 84, 13, 1, 0, 0, 0, 85, 86, 5, 14, 0, 0, 86, 87,
+		5, 11, 0, 0, 87, 88, 5, 15, 0, 0, 88, 89, 5, 12, 0, 0, 89, 15, 1, 0, 0,
+		0, 7, 19, 28, 35, 47, 54, 66, 83,
+	}
+	deserializer := antlr.NewATNDeserializer(nil)
+	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
+	atn := staticData.atn
+	staticData.decisionToDFA = make([]*antlr.DFA, len(atn.DecisionToState))
+	decisionToDFA := staticData.decisionToDFA
+	for index, state := range atn.DecisionToState {
+		decisionToDFA[index] = antlr.NewDFA(state, index)
+	}
+}
+
+// MsonParserInit initializes any static state used to implement MsonParser. By default the
+// static state used to implement the parser is lazily initialized during the first call to
+// NewMsonParser(). You can call this function if you wish to initialize the static state ahead
+// of time.
+func MsonParserInit() {
+	staticData := &msonParserStaticData
+	staticData.once.Do(msonParserInit)
+}
+
+// NewMsonParser produces a new parser instance for the optional input antlr.TokenStream.
 func NewMsonParser(input antlr.TokenStream) *MsonParser {
+	MsonParserInit()
 	this := new(MsonParser)
-
 	this.BaseParser = antlr.NewBaseParser(input)
-
-	this.Interpreter = antlr.NewParserATNSimulator(this, deserializedATN, decisionToDFA, antlr.NewPredictionContextCache())
-	this.RuleNames = ruleNames
-	this.LiteralNames = literalNames
-	this.SymbolicNames = symbolicNames
-	this.GrammarFileName = "Mson.g4"
+	staticData := &msonParserStaticData
+	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
+	this.RuleNames = staticData.ruleNames
+	this.LiteralNames = staticData.literalNames
+	this.SymbolicNames = staticData.symbolicNames
+	this.GrammarFileName = "java-escape"
 
 	return this
 }
@@ -168,12 +189,20 @@ func NewMsonContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 func (s *MsonContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *MsonContext) AllValue() []IValueContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IValueContext)(nil)).Elem())
-	var tst = make([]IValueContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IValueContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IValueContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IValueContext); ok {
 			tst[i] = t.(IValueContext)
+			i++
 		}
 	}
 
@@ -181,7 +210,17 @@ func (s *MsonContext) AllValue() []IValueContext {
 }
 
 func (s *MsonContext) Value(i int) IValueContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IValueContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -211,6 +250,9 @@ func (s *MsonContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) Mson() (localctx IMsonContext) {
+	this := p
+	_ = this
+
 	localctx = NewMsonContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, MsonParserRULE_mson)
 	var _la int
@@ -236,7 +278,7 @@ func (p *MsonParser) Mson() (localctx IMsonContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<MsonParserT__0)|(1<<MsonParserT__4)|(1<<MsonParserT__6)|(1<<MsonParserT__7)|(1<<MsonParserT__8)|(1<<MsonParserT__9)|(1<<MsonParserT__12)|(1<<MsonParserT__13)|(1<<MsonParserSTRING)|(1<<MsonParserNUMBER))) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&124834) != 0 {
 		{
 			p.SetState(16)
 			p.Value()
@@ -289,12 +331,20 @@ func NewObjContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoking
 func (s *ObjContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ObjContext) AllPair() []IPairContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IPairContext)(nil)).Elem())
-	var tst = make([]IPairContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IPairContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IPairContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IPairContext); ok {
 			tst[i] = t.(IPairContext)
+			i++
 		}
 	}
 
@@ -302,7 +352,17 @@ func (s *ObjContext) AllPair() []IPairContext {
 }
 
 func (s *ObjContext) Pair(i int) IPairContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPairContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPairContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -332,6 +392,9 @@ func (s *ObjContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) Obj() (localctx IObjContext) {
+	this := p
+	_ = this
+
 	localctx = NewObjContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, MsonParserRULE_obj)
 	var _la int
@@ -454,7 +517,13 @@ func (s *PairContext) GetKey() antlr.Token { return s.key }
 func (s *PairContext) SetKey(v antlr.Token) { s.key = v }
 
 func (s *PairContext) Value() IValueContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IValueContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -488,6 +557,9 @@ func (s *PairContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) Pair() (localctx IPairContext) {
+	this := p
+	_ = this
+
 	localctx = NewPairContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 4, MsonParserRULE_pair)
 
@@ -566,12 +638,20 @@ func NewArrayContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 func (s *ArrayContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *ArrayContext) AllValue() []IValueContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IValueContext)(nil)).Elem())
-	var tst = make([]IValueContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IValueContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IValueContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IValueContext); ok {
 			tst[i] = t.(IValueContext)
+			i++
 		}
 	}
 
@@ -579,7 +659,17 @@ func (s *ArrayContext) AllValue() []IValueContext {
 }
 
 func (s *ArrayContext) Value(i int) IValueContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IValueContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -609,6 +699,9 @@ func (s *ArrayContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) Array() (localctx IArrayContext) {
+	this := p
+	_ = this
+
 	localctx = NewArrayContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 6, MsonParserRULE_array)
 	var _la int
@@ -728,7 +821,13 @@ func (s *ValueContext) NUMBER() antlr.TerminalNode {
 }
 
 func (s *ValueContext) BinData() IBinDataContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBinDataContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBinDataContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -738,7 +837,13 @@ func (s *ValueContext) BinData() IBinDataContext {
 }
 
 func (s *ValueContext) NumberLong() INumberLongContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*INumberLongContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INumberLongContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -748,7 +853,13 @@ func (s *ValueContext) NumberLong() INumberLongContext {
 }
 
 func (s *ValueContext) IsoDate() IIsoDateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIsoDateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIsoDateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -758,7 +869,13 @@ func (s *ValueContext) IsoDate() IIsoDateContext {
 }
 
 func (s *ValueContext) Obj() IObjContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IObjContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IObjContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -768,7 +885,13 @@ func (s *ValueContext) Obj() IObjContext {
 }
 
 func (s *ValueContext) Array() IArrayContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IArrayContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IArrayContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -798,6 +921,9 @@ func (s *ValueContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) Value() (localctx IValueContext) {
+	this := p
+	_ = this
+
 	localctx = NewValueContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 8, MsonParserRULE_value)
 
@@ -987,6 +1113,9 @@ func (s *BinDataContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) BinData() (localctx IBinDataContext) {
+	this := p
+	_ = this
+
 	localctx = NewBinDataContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 10, MsonParserRULE_binData)
 
@@ -1130,6 +1259,9 @@ func (s *NumberLongContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) NumberLong() (localctx INumberLongContext) {
+	this := p
+	_ = this
+
 	localctx = NewNumberLongContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, MsonParserRULE_numberLong)
 
@@ -1275,6 +1407,9 @@ func (s *IsoDateContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 func (p *MsonParser) IsoDate() (localctx IIsoDateContext) {
+	this := p
+	_ = this
+
 	localctx = NewIsoDateContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 14, MsonParserRULE_isoDate)
 

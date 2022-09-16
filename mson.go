@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 	"github.com/raff/mson/parser"
 )
 
@@ -34,9 +34,7 @@ func (p *Processor) Value() interface{} {
 	return p.value
 }
 
-//
 // Parse parses a Mson object
-//
 func (p *Processor) Parse(mson string) (result interface{}, ok bool) {
 	p.errors = false
 	p.value = nil
@@ -57,9 +55,7 @@ func (p *Processor) Parse(mson string) (result interface{}, ok bool) {
 	return result, p.errors == false
 }
 
-//
 // VisitErrorNode is called when there is an error
-//
 func (p *Processor) VisitErrorNode(node antlr.ErrorNode) {
 	p.errors = true
 }
